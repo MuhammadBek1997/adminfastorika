@@ -6,7 +6,7 @@ import { ArrowLeftRight, ArrowRightCircle, BarChart, UserCog, UserCog2, UsersIco
 
 const Sidebar = () => {
 
-  let {t,theme} = useGlobalContext()
+  let {t} = useGlobalContext()
 
   return (
     <aside className="admin-sidebar">

@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { AppContext } from './context.js';
 import { useTranslation } from 'react-i18next';
 import { getToken } from './components/getToken.jsx';
+import { fetchUsers } from './api.js';
 
 export const AppProvider = ({ children }) => {
   const { t, i18n } = useTranslation();
@@ -17,6 +18,10 @@ export const AppProvider = ({ children }) => {
     return savedTheme || 'light';
   });
   const [token,setToken] = useState(localStorage.getItem("token") || "")
+
+  const [users, setUsers] = useState([])
+  const [usersLoading, setUsersLoading] = useState(false)
+  const [usersError, setUsersError] = useState(null)
 
 
   useEffect(() => {
@@ -50,7 +55,7 @@ export const AppProvider = ({ children }) => {
     window.location.assign('/');
   }
 
-  const handleLogin = async (_email, _password) => {
+  const handleLogin = async () => {
     try {
       const token = await getToken();
       localStorage.setItem('token', token);
@@ -61,6 +66,19 @@ export const AppProvider = ({ children }) => {
     } catch (e) {
       console.error('Login failed:', e);
       return false;
+    }
+  }
+
+  const loadUsers = async (page = 0, size = 10) => {
+    setUsersLoading(true)
+    setUsersError(null)
+    try {
+      const data = await fetchUsers(page, size)
+      setUsers(data)
+    } catch (e) {
+      setUsersError(e?.message || 'Error')
+    } finally {
+      setUsersLoading(false)
     }
   }
 
@@ -77,7 +95,9 @@ export const AppProvider = ({ children }) => {
        currentLanguage, 
        t, languages, 
        currentLang, cancelLogin, handleLogin,
-       token}}>
+       token,
+       users, usersLoading, usersError, loadUsers
+       }}>
       {children}
     </AppContext.Provider>
   );

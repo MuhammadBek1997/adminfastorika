@@ -3,7 +3,10 @@ import AdminNavbar from '../components/AdminNavbar.jsx'
 import { useGlobalContext } from '../context.js'
 
 const Clients = () => {
-  let {t} = useGlobalContext()
+  let {t,users} = useGlobalContext()
+
+  console.log(users);
+  
   return (
     <section className="admin-section">
       <div className="section-header">
@@ -13,7 +16,7 @@ const Clients = () => {
         <AdminNavbar/>
       </div>
       <div className="section-body">
-        
+
       </div>
     </section>
   )

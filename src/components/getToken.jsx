@@ -21,7 +21,7 @@ export const getToken = async () => {
   let data;
   try {
     data = await res.json();
-  } catch (e) {
+  } catch {
     throw new Error('Login response is not JSON');
   }
 
