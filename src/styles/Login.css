@@ -1,0 +1,74 @@
+.login-admin{
+    background-color: var(--bg-body);
+   padding-top: 9rem; 
+}
+.login-navbar{
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+}
+.logo img{
+    width: 7rem;
+}
+.dropdowns-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.login-cont{
+    width: 30%;
+    height: 70%;
+    background-color: var(--bg);
+    border-radius: 2rem;
+    padding: 2rem;
+    margin: 0 auto;
+}
+.login-cont h1{
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+.login-cont-form{
+    width: 100%;
+    margin: 1rem auto;
+}
+.login-cont-form input{
+    width: 100%;
+    height: 6vh;
+    background-color: var(--bg-body);
+    margin: 0.5rem auto;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+.login-cont-form-psw{
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-cont-form-psw img{
+    width: 1.5rem;
+    position: absolute;
+    right: 1rem;
+}
+.login-cont button{
+    width: 100%;
+    height: 6vh;
+    background-color: var(--btn-primary);
+    border-radius: 1rem;
+    font-weight: 500;
+}
+.login-forgot{
+    margin: 1rem auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+}
