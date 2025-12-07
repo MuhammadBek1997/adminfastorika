@@ -1,8 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import { AppContext } from './context.js';
 import { useTranslation } from 'react-i18next';
-import { getToken } from './components/getToken.jsx';
 import { fetchUsers } from './api.js';
+// import { useNavigate } from 'react-router-dom';
 
 export const AppProvider = ({ children }) => {
   const { t, i18n } = useTranslation();
@@ -11,13 +11,13 @@ export const AppProvider = ({ children }) => {
     i18n.changeLanguage(langCode);
     localStorage.setItem('language', langCode);
   }
-
+  
 
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
     return savedTheme || 'light';
   });
-  const [token,setToken] = useState(localStorage.getItem("token") || "")
+  const token = localStorage.getItem("token") || ""
 
   const [users, setUsers] = useState([])
   const [usersLoading, setUsersLoading] = useState(false)
@@ -56,17 +56,9 @@ export const AppProvider = ({ children }) => {
   }
 
   const handleLogin = async () => {
-    try {
-      const token = await getToken();
-      localStorage.setItem('token', token);
-      setToken(token)
-      localStorage.setItem('adminlog', 'true');
-      window.location.reload();
-      return true;
-    } catch (e) {
-      console.error('Login failed:', e);
-      return false;
-    }
+    localStorage.setItem('adminlogin', 'true');
+    window.location.assign('/');
+    return true;
   }
 
   const loadUsers = async (page = 0, size = 10) => {

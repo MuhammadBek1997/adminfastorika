@@ -32,6 +32,9 @@ const Sidebar = () => {
             {t("admins")}
           </NavLink>
       </div>
+      <div className='sidebar-account'>
+        
+      </div>
     </aside>
   )
 }
