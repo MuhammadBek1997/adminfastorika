@@ -56,7 +56,7 @@ export const AppProvider = ({ children }) => {
   }
 
   const handleLogin = async () => {
-    localStorage.setItem('adminlogin', 'true');
+    localStorage.setItem('adminlog', 'true');
     window.location.assign('/');
     return true;
   }
