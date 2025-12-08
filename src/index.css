@@ -29,3 +29,5 @@
 .dark::-webkit-scrollbar-thumb:hover {
   background: #9ca3af;
 }
+
+html, body { touch-action: pan-x pan-y; }
