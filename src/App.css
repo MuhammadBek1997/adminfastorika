@@ -1,29 +1,4 @@
-/* :root { */
-/* Light mode ranglar */
-/* --bg-body-light: #F0F0F0;
-    --bg-light: #FFFFFF;
-    --text-light: #202020;
-    --text-secondary-light: #666666;
-    --textp-secondary-light: rgba(0, 0, 0, 0.75);
-    --border-light: #E0E0E0;
-    --shadow-light: rgba(0, 0, 0, 0.1);
-    --border-btn-light: #CECECE; */
 
-/* Dark mode ranglar */
-/* --bg-body-dark: #363636;
-    --bg-dark: #202020;
-    --bg-dark-secondary: #2A2A2A;
-    --text-dark: #FFFFFF;
-    --text-secondary-dark: #B0B0B0;
-    --textp-secondary-dark: rgba(255, 255, 255, 0.75);
-    --border-dark: #404040;
-    --shadow-dark: rgba(0, 0, 0, 0.3);
-    --border-btn-dark: #5B5B5B; */
-
-/* Button ranglar */
-/* --btn-primary: #00D796;
-    --btn-primary-hover: #00ca8e; */
-/* } */
 :root {
   --bg-body: #F0F0F0;
   --bg: #ffffff;
@@ -44,6 +19,7 @@
   --pill-ok: #10b981;
   --pill-under: #f59e0b;
   --pill-not: #6b7280;
+  --sidebar-width: 280px;
 }
 
 #dark {
@@ -66,6 +42,7 @@
   --pill-ok: #34d399;
   --pill-under: #fbbf24;
   --pill-not: #9ca3af;
+  --sidebar-width: 280px;
 }
 
 /* Explicit block so #light id also works like Fastorika */
@@ -75,12 +52,17 @@
   --muted: #6b7280;
   --border: #e5e7eb;
   --surface: #ffffff;
+  --sidebar-width: 280px;
 }
 
 .app-root {
   min-height: 100vh;
   background-color: var(--bg);
   color: var(--text);
+}
+
+.main-content {
+  min-height: 100vh;
 }
 
 .container {
@@ -320,7 +302,7 @@
 /* --- Sections (landing-like cards) --- */
 .admin-section {
   background-color: var(--bg);
-  padding-left: 16vw;
+  width: 100%;
 }
 
 .admin-section .section-header {

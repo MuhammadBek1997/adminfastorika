@@ -19,6 +19,9 @@ export const AppProvider = ({ children }) => {
   });
   const token = localStorage.getItem("token") || ""
 
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+  const [sidebarWidth,setSidebarWidth] = useState("280px")
+
   const [users, setUsers] = useState([])
   const [usersLoading, setUsersLoading] = useState(false)
   const [usersError, setUsersError] = useState(null)
@@ -33,6 +36,13 @@ export const AppProvider = ({ children }) => {
     }
     localStorage.setItem('theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--sidebar-width',
+      sidebarCollapsed ? '80px' : '280px'
+    )
+  }, [sidebarCollapsed])
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
@@ -84,11 +94,13 @@ export const AppProvider = ({ children }) => {
     <AppContext.Provider value={{ theme,
      toggleTheme,
       handleChange,
-       currentLanguage, 
-       t, languages, 
+       currentLanguage,
+       t, languages,
        currentLang, cancelLogin, handleLogin,
        token,
-       users, usersLoading, usersError, loadUsers
+       users, usersLoading, usersError, loadUsers,
+       sidebarCollapsed, setSidebarCollapsed,
+       sidebarWidth,setSidebarWidth
        }}>
       {children}
     </AppContext.Provider>
