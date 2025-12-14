@@ -230,7 +230,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 .admins-header {
@@ -316,7 +316,7 @@ body {
 }
 
 .admins-table td {
-  padding: 0.5rem 0.75rem;
+  padding: 0.7rem;
   font-size: 0.75rem;
   color: var(--text);
   overflow: hidden;

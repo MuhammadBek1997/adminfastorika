@@ -2,7 +2,7 @@ import { useState } from 'react'
 import '../styles/Login.css'
 import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../context'
-import { AlertCircle, ChevronDown, Moon, Sun } from 'lucide-react'
+import { AlertCircle, ChevronDown, Eye, EyeClosed, Moon, Sun } from 'lucide-react'
 
 const Login = () => {
 
@@ -13,6 +13,7 @@ const Login = () => {
     const [isShowPsw, setIsShowPsw] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [isLoginMenuOpen, setIsLoginMenuOpen] = useState(false)
 
 
 
@@ -119,7 +120,8 @@ const Login = () => {
                     </label>
                     <div className='login-cont-form-psw'>
                         <input type={isShowPsw ? "text" : "password"} value={password} onChange={(e)=>setPassword(e.target.value)} />
-                        <img src={!isShowPsw ? `/images/visible${theme}.png` : `/images/hide${theme}.png`} alt="" onClick={() => setIsShowPsw(!isShowPsw)} />
+                        {isShowPsw ? <Eye className='login-cont-form-psw-img' onClick={() => setIsShowPsw(!isShowPsw)}/> : <EyeClosed className='login-cont-form-psw-img' onClick={() => setIsShowPsw(!isShowPsw)}/>}
+                        {/* <img src={!isShowPsw ? `/images/visible${theme}.png` : `/images/hide${theme}.png`} alt="" onClick={() => setIsShowPsw(!isShowPsw)} /> */}
                     </div>
                 </div>
                 <div className='login-forgot'>

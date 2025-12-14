@@ -2,13 +2,14 @@ import { useState } from 'react'
 import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import '../styles/Sidebar.css'
 import { useGlobalContext } from '../context'
-import { ArrowLeftRight, BarChart, UserCog, UsersIcon, ChevronDown, PanelLeftClose, PanelLeft, MessagesSquare } from 'lucide-react'
+import { ArrowLeftRight, BarChart, UserCog, UsersIcon, ChevronDown, PanelLeftClose, PanelLeft, MessagesSquare, LogOut, ChevronUp } from 'lucide-react'
 
 const Sidebar = () => {
   const { t, sidebarCollapsed, setSidebarCollapsed,setSidebarWidth,sidebarWidth } = useGlobalContext()
   const navigate = useNavigate()
   const location = useLocation()
   const [showReportsMenu, setShowReportsMenu] = useState(false)
+  const [showUserMenu, setShowUserMenu] = useState(false)
 
   // Check if we're on a reports page
   const isReportsActive = location.pathname.startsWith('/reports')
@@ -27,6 +28,14 @@ const Sidebar = () => {
   const handleCollapse = () =>{
     setSidebarCollapsed(!sidebarCollapsed)
     setSidebarWidth(sidebarWidth == "80px" ? "280px" : "80px")
+  }
+
+  const handleLogout = () => {
+    // Add your logout logic here
+    console.log('Logging out...')
+    // For example: clear tokens, redirect to login, etc.
+    // localStorage.removeItem('authToken')
+    // navigate('/login')
   }
 
   return (
@@ -105,7 +114,40 @@ const Sidebar = () => {
           </NavLink>
       </div>
       <div className='sidebar-account'>
-
+        <div className="user-menu-container">
+          {showUserMenu && (
+            <div className="user-menu-popup">
+              <button className="user-menu-item logout-btn" onClick={handleLogout}>
+                <LogOut size={18} />
+                <span>Logout</span>
+              </button>
+            </div>
+          )}
+          <button
+            className="user-account-btn"
+            onClick={() => setShowUserMenu(!showUserMenu)}
+            title="User Account"
+          >
+            <div className="user-avatar">
+              <span>U</span>
+            </div>
+            {!sidebarCollapsed && (
+              <>
+                <div className="user-info">
+                  <span className="user-name">UserName</span>
+                  <span className="user-email">user@gmail.com</span>
+                </div>
+                <ChevronUp
+                  size={16}
+                  style={{
+                    transition: 'transform 0.2s',
+                    transform: showUserMenu ? 'rotate(0deg)' : 'rotate(180deg)'
+                  }}
+                />
+              </>
+            )}
+          </button>
+        </div>
       </div>
     </aside>
   )
