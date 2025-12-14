@@ -191,7 +191,7 @@ const ClientDetails = () => {
             <div className="status-card">
               <div className="status-card-header">
                 <div className="status-card-label">{t('delivered') || 'Доставлено'}</div>
-                <div className="status-icon green">
+                <div className="client-status-icon green">
                   <Check size={16} strokeWidth={3} />
                 </div>
               </div>
@@ -200,7 +200,7 @@ const ClientDetails = () => {
             <div className="status-card">
               <div className="status-card-header">
                 <div className="status-card-label">{t('rejected') || 'Отклонено'}</div>
-                <div className="status-icon red">
+                <div className="client-status-icon red">
                   <MinusCircleIcon size={16} strokeWidth={3} />
                 </div>
               </div>
@@ -209,7 +209,7 @@ const ClientDetails = () => {
             <div className="status-card">
               <div className="status-card-header">
                 <div className="status-card-label">{t('inProcess') || 'В обработке'}</div>
-                <div className="status-icon blue">
+                <div className="client-status-icon blue">
                   <Clock size={16} strokeWidth={3} />
                 </div>
               </div>
@@ -218,7 +218,7 @@ const ClientDetails = () => {
             <div className="status-card">
               <div className="status-card-header">
                 <div className="status-card-label">{t('toPay') || 'К оплате'}</div>
-                <div className="status-icon orange">
+                <div className="client-status-icon orange">
                   <CircleDollarSignIcon size={16} strokeWidth={3} />
                 </div>
               </div>
@@ -227,7 +227,7 @@ const ClientDetails = () => {
             <div className="status-card">
               <div className="status-card-header">
                 <div className="status-card-label">{t('support') || 'Поддержка'}</div>
-                <div className="status-icon purple">
+                <div className="client-status-icon purple">
                   <MessagesSquare size={16} strokeWidth={3} />
                 </div>
               </div>

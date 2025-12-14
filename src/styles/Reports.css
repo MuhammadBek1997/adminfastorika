@@ -129,6 +129,7 @@
   background: var(--bg);
 }
 
+
 .status-card-header {
   display: flex;
   justify-content: space-between;

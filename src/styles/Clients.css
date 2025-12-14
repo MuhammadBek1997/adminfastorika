@@ -691,32 +691,38 @@
   font-size: 0.75rem;
   font-weight: 500;
 }
+.client-details-container .status-card{
+  max-width: 195px;
+}
 
-.status-delivered {
-  background: #10b98120;
+.client-status-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.client-status-icon.green {
   color: #10b981;
 }
 
-.status-rejected {
-  background: #ef444420;
+.client-status-icon.red {
   color: #ef4444;
 }
 
-.status-in-process {
-  background: #3b82f620;
+.client-status-icon.blue {
   color: #3b82f6;
 }
 
-.status-support {
-  background: #8b5cf620;
-  color: #8b5cf6;
-}
-
-.status-to-pay {
-  background: #f59e0b20;
+.client-status-icon.orange {
   color: #f59e0b;
 }
 
+.client-status-icon.purple {
+  color: #8b5cf6;
+}
 .transaction-pagination {
   display: flex;
   justify-content: center;
