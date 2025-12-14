@@ -140,10 +140,10 @@ const RevenueReport = () => {
           {showExportMenu && (
             <div className="export-menu">
               <button onClick={() => { exportToExcel(); setShowExportMenu(false) }} className="export-menu-item">
-                Excel
+                {t('export.excel') || 'Excel'}
               </button>
               <button onClick={() => { exportToCSV(); setShowExportMenu(false) }} className="export-menu-item">
-                CSV
+                {t('export.csv') || 'CSV'}
               </button>
             </div>
           )}
@@ -234,7 +234,14 @@ const RevenueReport = () => {
         <ResponsiveContainer width="100%" height={400}>
           <BarChart data={revenueData}>
             <CartesianGrid strokeDasharray="3 3" stroke={chartColors.grid} />
-            <XAxis dataKey="month" stroke={chartColors.text} />
+            <XAxis
+              dataKey="month"
+              stroke={chartColors.text}
+              tickFormatter={(m) => {
+                const map = { Jan: t('month.jan') || 'Jan', Feb: t('month.feb') || 'Feb', Mar: t('month.mar') || 'Mar', Apr: t('month.apr') || 'Apr', May: t('month.may') || 'May', Jun: t('month.jun') || 'Jun' }
+                return map[m] || m
+              }}
+            />
             <YAxis stroke={chartColors.text} />
             <Tooltip
               contentStyle={{

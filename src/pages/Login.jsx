@@ -54,7 +54,7 @@ const Login = () => {
                                     className={`themeOption ${theme === 'light' ? 'active' : ''}`}
                                 >
                                     <Sun/>
-                                    <span>Light</span>
+                                    <span>{t('theme.light') || 'Light'}</span>
                                 </button>
                                 <button
                                     onClick={() => {
@@ -64,7 +64,7 @@ const Login = () => {
                                     className={`themeOption ${theme === 'dark' ? 'active' : ''}`}
                                 >
                                     <Moon/>
-                                    <span>Dark</span>
+                                    <span>{t('theme.dark') || 'Dark'}</span>
                                 </button>
                             </div>
                         )}

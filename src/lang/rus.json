@@ -118,5 +118,47 @@
   "theme":{
     "light":"Светлый",
     "dark":"Тёмный"
+  },
+  "language":{
+    "russian":"Русский",
+    "english":"Английский"
+  },
+  "export":{
+    "excel":"Excel",
+    "csv":"CSV"
+  },
+  "month":{
+    "jan":"Янв",
+    "feb":"Фев",
+    "mar":"Мар",
+    "apr":"Апр",
+    "may":"Май",
+    "jun":"Июн"
+  },
+  "type":{
+    "transfer":"Перевод",
+    "exchange":"Обмен",
+    "withdrawal":"Вывод",
+    "crypto":"Крипто"
+  },
+  "country":{
+    "usa":"США",
+    "uzbekistan":"Узбекистан",
+    "russia":"Россия"
+  },
+  "liquidity":{
+    "high":"Высокая"
+  },
+  "expandSidebar":"Развернуть боковую панель",
+  "collapseSidebar":"Свернуть боковую панель",
+  "writeMessage":"Написать сообщение...",
+  "addAdministrator":"Добавить администратора",
+  "surname":"Фамилия",
+  "password":"Пароль",
+  "administratorData":"Данные администратора",
+  "modulesAccess":"Доступы к модулям",
+  "deleteAdministrator":"Удалить администратора",
+  "brand":{
+    "admin":"Админ"
   }
 }

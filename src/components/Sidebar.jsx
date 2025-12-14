@@ -36,12 +36,12 @@ const Sidebar = () => {
         <div className='sidebar-header'>
           <div className='brand'>
             <img src="/images/logoside.svg" alt="" />
-            {!sidebarCollapsed && <span>Admin</span>}
+            {!sidebarCollapsed && <span>{t('brand.admin') || 'Admin'}</span>}
           </div>
           <button
             className='sidebar-toggle'
             onClick={() => handleCollapse()}
-            title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            title={sidebarCollapsed ? (t('expandSidebar') || 'Expand sidebar') : (t('collapseSidebar') || 'Collapse sidebar')}
           >
             {sidebarCollapsed ? <PanelLeft size={20} /> : <PanelLeftClose size={20} />}
           </button>

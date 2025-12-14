@@ -2,8 +2,6 @@ import { useState, useEffect, useMemo } from 'react';
 import { AppContext } from './context.js';
 import { useTranslation } from 'react-i18next';
 import { fetchUsers } from './api.js';
-import { useNavigate } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 
 
 export const AppProvider = ({ children }) => {
@@ -52,9 +50,9 @@ export const AppProvider = ({ children }) => {
 
   // Fastorika-style language list
   const languages = useMemo(() => ([
-    { code: 'ru', name: 'Русский', flag: 'https://img.icons8.com/color/96/russian-federation-circular.png' },
-    { code: 'en', name: 'English', flag: 'https://img.icons8.com/color/96/usa-circular.png' },
-  ]), [])
+    { code: 'ru', name: t('language.russian'), flag: 'https://img.icons8.com/color/96/russian-federation-circular.png' },
+    { code: 'en', name: t('language.english'), flag: 'https://img.icons8.com/color/96/usa-circular.png' },
+  ]), [t])
 
   const currentLang = useMemo(() => {
     const code2 = (currentLanguage || 'en').slice(0, 2)

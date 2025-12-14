@@ -53,7 +53,7 @@ const BalancesReport = () => {
   ]
 
   const totalProviderBalance = '$130,000'
-  const overallLiquidity = 'High'
+  const overallLiquidity = 'high'
 
   // Chart colors based on theme
   const chartColors = theme === 'dark' ? {
@@ -86,10 +86,10 @@ const BalancesReport = () => {
             className="status-card-value"
             style={{
               fontSize: '1.5rem',
-              color: overallLiquidity === 'High' ? chartColors.sent : chartColors.declined
+              color: overallLiquidity === 'high' ? chartColors.sent : chartColors.declined
             }}
           >
-            {overallLiquidity}
+            {t('liquidity.high') || 'High'}
           </div>
         </div>
       </div>
@@ -104,7 +104,7 @@ const BalancesReport = () => {
                   {provider.name}
                 </h3>
                 <div className="provider-card-type">
-                  {t('type') || 'Type'}: {provider.type}
+                  {t('type') || 'Type'}: {t(`type.${provider.type.toLowerCase()}`) || provider.type}
                 </div>
               </div>
               <div style={{ textAlign: 'right' }}>

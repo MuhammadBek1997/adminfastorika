@@ -10,7 +10,7 @@ const Support = () => {
   const [attachments, setAttachments] = useState([])
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
-  let {sidebarWidth,sidebarCollapsed} = useGlobalContext()
+  let {sidebarWidth,sidebarCollapsed,t} = useGlobalContext()
 
   // Check screen size and auto-collapse on mobile/tablet
   useEffect(() => {
@@ -265,10 +265,10 @@ const Support = () => {
       {/* Left Sidebar - Conversations List */}
       <div className={`support-sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
         <div className="support-sidebar-header">
-          <h2 className="support-sidebar-title">Поддержка</h2>
+          <h2 className="support-sidebar-title">{t('support') || 'Поддержка'}</h2>
           <input
             type="text"
-            placeholder="Поиск..."
+            placeholder={t('search') || 'Поиск...'}
             className="support-search"
           />
         </div>
@@ -365,7 +365,7 @@ const Support = () => {
             </div>
             <textarea
               className="support-chat-input"
-              placeholder="Написать сообщение..."
+              placeholder={t('writeMessage') || 'Написать сообщение...'}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={(e) => {

@@ -118,5 +118,47 @@
   "theme":{
     "light":"light",
     "dark":"dark"
+  },
+  "language":{
+    "russian":"Russian",
+    "english":"English"
+  },
+  "export":{
+    "excel":"Excel",
+    "csv":"CSV"
+  },
+  "month":{
+    "jan":"Jan",
+    "feb":"Feb",
+    "mar":"Mar",
+    "apr":"Apr",
+    "may":"May",
+    "jun":"Jun"
+  },
+  "type":{
+    "transfer":"Transfer",
+    "exchange":"Exchange",
+    "withdrawal":"Withdrawal",
+    "crypto":"Crypto"
+  },
+  "country":{
+    "usa":"USA",
+    "uzbekistan":"Uzbekistan",
+    "russia":"Russia"
+  },
+  "liquidity":{
+    "high":"High"
+  },
+  "expandSidebar":"Expand sidebar",
+  "collapseSidebar":"Collapse sidebar",
+  "writeMessage":"Write a message...",
+  "addAdministrator":"Add administrator",
+  "surname":"Surname",
+  "password":"Password",
+  "administratorData":"Administrator Data",
+  "modulesAccess":"Access to modules",
+  "deleteAdministrator":"Delete administrator",
+  "brand":{
+    "admin":"Admin"
   }
 }

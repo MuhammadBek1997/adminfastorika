@@ -145,14 +145,14 @@ const TransactionsReport = () => {
           </button>
           {showTypeMenu && (
             <div className="export-menu">
-              <button onClick={() => { setSelectedType('Transfer'); setShowTypeMenu(false) }} className="export-menu-item">
-                Transfer
+              <button onClick={() => { setSelectedType(t('type.transfer') || 'Transfer'); setShowTypeMenu(false) }} className="export-menu-item">
+                {t('type.transfer') || 'Transfer'}
               </button>
-              <button onClick={() => { setSelectedType('Exchange'); setShowTypeMenu(false) }} className="export-menu-item">
-                Exchange
+              <button onClick={() => { setSelectedType(t('type.exchange') || 'Exchange'); setShowTypeMenu(false) }} className="export-menu-item">
+                {t('type.exchange') || 'Exchange'}
               </button>
-              <button onClick={() => { setSelectedType('Withdrawal'); setShowTypeMenu(false) }} className="export-menu-item">
-                Withdrawal
+              <button onClick={() => { setSelectedType(t('type.withdrawal') || 'Withdrawal'); setShowTypeMenu(false) }} className="export-menu-item">
+                {t('type.withdrawal') || 'Withdrawal'}
               </button>
             </div>
           )}
@@ -166,20 +166,20 @@ const TransactionsReport = () => {
           </button>
           {showStatusMenu && (
             <div className="export-menu">
-              <button onClick={() => { setSelectedStatus('Доставлено'); setShowStatusMenu(false) }} className="export-menu-item">
-                Доставлено
+              <button onClick={() => { setSelectedStatus(t('delivered') || 'Доставлено'); setShowStatusMenu(false) }} className="export-menu-item">
+                {t('delivered') || 'Доставлено'}
               </button>
-              <button onClick={() => { setSelectedStatus('Отклонено'); setShowStatusMenu(false) }} className="export-menu-item">
-                Отклонено
+              <button onClick={() => { setSelectedStatus(t('rejected') || 'Отклонено'); setShowStatusMenu(false) }} className="export-menu-item">
+                {t('rejected') || 'Отклонено'}
               </button>
-              <button onClick={() => { setSelectedStatus('В обработке'); setShowStatusMenu(false) }} className="export-menu-item">
-                В обработке
+              <button onClick={() => { setSelectedStatus(t('inProcess') || 'В обработке'); setShowStatusMenu(false) }} className="export-menu-item">
+                {t('inProcess') || 'В обработке'}
               </button>
-              <button onClick={() => { setSelectedStatus('К оплате'); setShowStatusMenu(false) }} className="export-menu-item">
-                К оплате
+              <button onClick={() => { setSelectedStatus(t('toPay') || 'К оплате'); setShowStatusMenu(false) }} className="export-menu-item">
+                {t('toPay') || 'К оплате'}
               </button>
-              <button onClick={() => { setSelectedStatus('Поддержка'); setShowStatusMenu(false) }} className="export-menu-item">
-                Поддержка
+              <button onClick={() => { setSelectedStatus(t('support') || 'Поддержка'); setShowStatusMenu(false) }} className="export-menu-item">
+                {t('support') || 'Поддержка'}
               </button>
             </div>
           )}
@@ -193,14 +193,14 @@ const TransactionsReport = () => {
           </button>
           {showFromMenu && (
             <div className="export-menu">
-              <button onClick={() => { setSelectedFrom('USA'); setShowFromMenu(false) }} className="export-menu-item">
-                USA
+              <button onClick={() => { setSelectedFrom(t('country.usa') || 'USA'); setShowFromMenu(false) }} className="export-menu-item">
+                {t('country.usa') || 'USA'}
               </button>
-              <button onClick={() => { setSelectedFrom('Uzbekistan'); setShowFromMenu(false) }} className="export-menu-item">
-                Uzbekistan
+              <button onClick={() => { setSelectedFrom(t('country.uzbekistan') || 'Uzbekistan'); setShowFromMenu(false) }} className="export-menu-item">
+                {t('country.uzbekistan') || 'Uzbekistan'}
               </button>
-              <button onClick={() => { setSelectedFrom('Russia'); setShowFromMenu(false) }} className="export-menu-item">
-                Russia
+              <button onClick={() => { setSelectedFrom(t('country.russia') || 'Russia'); setShowFromMenu(false) }} className="export-menu-item">
+                {t('country.russia') || 'Russia'}
               </button>
             </div>
           )}
@@ -214,14 +214,14 @@ const TransactionsReport = () => {
           </button>
           {showToMenu && (
             <div className="export-menu">
-              <button onClick={() => { setSelectedTo('USA'); setShowToMenu(false) }} className="export-menu-item">
-                USA
+              <button onClick={() => { setSelectedTo(t('country.usa') || 'USA'); setShowToMenu(false) }} className="export-menu-item">
+                {t('country.usa') || 'USA'}
               </button>
-              <button onClick={() => { setSelectedTo('Uzbekistan'); setShowToMenu(false) }} className="export-menu-item">
-                Uzbekistan
+              <button onClick={() => { setSelectedTo(t('country.uzbekistan') || 'Uzbekistan'); setShowToMenu(false) }} className="export-menu-item">
+                {t('country.uzbekistan') || 'Uzbekistan'}
               </button>
-              <button onClick={() => { setSelectedTo('Russia'); setShowToMenu(false) }} className="export-menu-item">
-                Russia
+              <button onClick={() => { setSelectedTo(t('country.russia') || 'Russia'); setShowToMenu(false) }} className="export-menu-item">
+                {t('country.russia') || 'Russia'}
               </button>
             </div>
           )}
@@ -238,10 +238,10 @@ const TransactionsReport = () => {
           {showExportMenu && (
             <div className="export-menu">
               <button onClick={() => { exportToExcel(); setShowExportMenu(false) }} className="export-menu-item">
-                Excel
+                {t('export.excel') || 'Excel'}
               </button>
               <button onClick={() => { exportToCSV(); setShowExportMenu(false) }} className="export-menu-item">
-                CSV
+                {t('export.csv') || 'CSV'}
               </button>
             </div>
           )}
@@ -332,7 +332,14 @@ const TransactionsReport = () => {
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke={chartColors.grid} />
-            <XAxis dataKey="month" stroke={chartColors.text} />
+            <XAxis
+              dataKey="month"
+              stroke={chartColors.text}
+              tickFormatter={(m) => {
+                const map = { Jan: t('month.jan') || 'Jan', Feb: t('month.feb') || 'Feb', Mar: t('month.mar') || 'Mar', Apr: t('month.apr') || 'Apr', May: t('month.may') || 'May', Jun: t('month.jun') || 'Jun' }
+                return map[m] || m
+              }}
+            />
             <YAxis stroke={chartColors.text} />
             <Tooltip
               contentStyle={{
@@ -343,11 +350,11 @@ const TransactionsReport = () => {
               }}
             />
             <Legend />
-            <Area type="monotone" dataKey="Sent" stroke={chartColors.sent} fillOpacity={1} fill="url(#colorSent)" />
-            <Area type="monotone" dataKey="Declined" stroke={chartColors.declined} fillOpacity={1} fill="url(#colorDeclined)" />
-            <Area type="monotone" dataKey="InProcess" stroke={chartColors.inProcess} fillOpacity={1} fill="url(#colorInProcess)" />
-            <Area type="monotone" dataKey="ToPay" stroke={chartColors.toPay} fillOpacity={1} fill="url(#colorToPay)" />
-            <Area type="monotone" dataKey="Support" stroke={chartColors.support} fillOpacity={1} fill="url(#colorSupport)" />
+            <Area name={t('delivered') || 'Delivered'} type="monotone" dataKey="Sent" stroke={chartColors.sent} fillOpacity={1} fill="url(#colorSent)" />
+            <Area name={t('rejected') || 'Rejected'} type="monotone" dataKey="Declined" stroke={chartColors.declined} fillOpacity={1} fill="url(#colorDeclined)" />
+            <Area name={t('inProcess') || 'In Process'} type="monotone" dataKey="InProcess" stroke={chartColors.inProcess} fillOpacity={1} fill="url(#colorInProcess)" />
+            <Area name={t('toPay') || 'To Pay'} type="monotone" dataKey="ToPay" stroke={chartColors.toPay} fillOpacity={1} fill="url(#colorToPay)" />
+            <Area name={t('support') || 'Support'} type="monotone" dataKey="Support" stroke={chartColors.support} fillOpacity={1} fill="url(#colorSupport)" />
           </AreaChart>
         </ResponsiveContainer>
       </div>
