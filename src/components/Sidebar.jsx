@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import '../styles/Sidebar.css'
 import { useGlobalContext } from '../context'
-import { ArrowLeftRight, BarChart, UserCog, UsersIcon, ChevronDown, PanelLeftClose, PanelLeft, MessagesSquare, LogOut, ChevronUp } from 'lucide-react'
+import { ArrowLeftRight, BarChart, UserCog, UsersIcon, ChevronDown, PanelLeftClose, PanelLeft, MessagesSquare, LogOut, ChevronUp, ChevronsUpDown } from 'lucide-react'
 
 const Sidebar = () => {
   const { t, sidebarCollapsed, setSidebarCollapsed,setSidebarWidth,sidebarWidth } = useGlobalContext()
@@ -34,7 +34,8 @@ const Sidebar = () => {
     // Add your logout logic here
     console.log('Logging out...')
     // For example: clear tokens, redirect to login, etc.
-    // localStorage.removeItem('authToken')
+    localStorage.clear()
+    window.location.reload()
     // navigate('/login')
   }
 
@@ -137,13 +138,10 @@ const Sidebar = () => {
                   <span className="user-name">UserName</span>
                   <span className="user-email">user@gmail.com</span>
                 </div>
-                <ChevronUp
-                  size={16}
-                  style={{
-                    transition: 'transform 0.2s',
-                    transform: showUserMenu ? 'rotate(0deg)' : 'rotate(180deg)'
-                  }}
-                />
+                {
+                  showUserMenu ?
+                  <ChevronDown size={16}/> :<ChevronsUpDown size={16}/>
+                }
               </>
             )}
           </button>
