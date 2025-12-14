@@ -13,7 +13,7 @@ const Admins = () => {
         </h2>
         <AdminNavbar />
       </div>
-      <div className="section-body" style={{ padding: '1.5rem' }}>
+      <div className="section-body">
         <Outlet />
       </div>
     </section>

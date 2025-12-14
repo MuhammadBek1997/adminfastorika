@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useGlobalContext } from '../../context.js'
-import { ChevronLeft, Search, Edit, CreditCard, Check, XCircle, Clock, DollarSign, MessageCircle } from 'lucide-react'
+import { ChevronLeft, Search, Edit, CreditCard, Check, XCircle, Clock, DollarSign, MessageCircle, MinusCircleIcon, CircleDollarSignIcon, MessagesSquare } from 'lucide-react'
 import '../../styles/Clients.css'
 
 const ClientDetails = () => {
@@ -144,7 +144,7 @@ const ClientDetails = () => {
           </div>
 
           {/* Statistics */}
-          <div className="client-stats-section">
+          {/* <div className="client-stats-section">
             <h3 className="section-subtitle">{t('statusStatistics') || 'Статистика по статусам'}</h3>
 
             <div className="stat-row">
@@ -185,6 +185,53 @@ const ClientDetails = () => {
                 <MessageCircle size={16} />
                 {client.statistics.support}
               </div>
+            </div>
+          </div> */}
+          <div className="status-cards">
+            <div className="status-card">
+              <div className="status-card-header">
+                <div className="status-card-label">{t('delivered') || 'Доставлено'}</div>
+                <div className="status-icon green">
+                  <Check size={16} strokeWidth={3} />
+                </div>
+              </div>
+              <div className="status-card-value green">{client.statistics.delivered}</div>
+            </div>
+            <div className="status-card">
+              <div className="status-card-header">
+                <div className="status-card-label">{t('rejected') || 'Отклонено'}</div>
+                <div className="status-icon red">
+                  <MinusCircleIcon size={16} strokeWidth={3} />
+                </div>
+              </div>
+              <div className="status-card-value red">{client.statistics.rejected}</div>
+            </div>
+            <div className="status-card">
+              <div className="status-card-header">
+                <div className="status-card-label">{t('inProcess') || 'В обработке'}</div>
+                <div className="status-icon blue">
+                  <Clock size={16} strokeWidth={3} />
+                </div>
+              </div>
+              <div className="status-card-value blue">{client.statistics.inProcess}</div>
+            </div>
+            <div className="status-card">
+              <div className="status-card-header">
+                <div className="status-card-label">{t('toPay') || 'К оплате'}</div>
+                <div className="status-icon orange">
+                  <CircleDollarSignIcon size={16} strokeWidth={3} />
+                </div>
+              </div>
+              <div className="status-card-value orange">{client.statistics.toPay}</div>
+            </div>
+            <div className="status-card">
+              <div className="status-card-header">
+                <div className="status-card-label">{t('support') || 'Поддержка'}</div>
+                <div className="status-icon purple">
+                  <MessagesSquare size={16} strokeWidth={3} />
+                </div>
+              </div>
+              <div className="status-card-value purple">{client.statistics.support}</div>
             </div>
           </div>
 

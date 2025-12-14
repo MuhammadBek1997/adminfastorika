@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useGlobalContext } from '../../context.js'
 import { ChevronLeft, Edit, Trash2, UsersIcon, ArrowLeftRight, BarChart, UserCog } from 'lucide-react'
-import Switch from 'react-switch'
 import '../../styles/Clients.css'
+import '../../styles/Admins.css'
 
 const AdminDetails = () => {
   const { t } = useGlobalContext()
@@ -138,26 +138,17 @@ const AdminDetails = () => {
 
 const AccessItem = ({ icon, title, checked, onToggle }) => {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem', padding: '0.75rem', border: '1px solid var(--border)', borderRadius: '0.5rem', background: 'var(--bg)' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-        <div style={{ width: 32, height: 32, borderRadius: 8, background: checked ? '#10b981' : '#4b5563', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{icon}</div>
+    <div className="access-item">
+      <div className="access-item-content">
+        <div className={`access-item-icon ${checked ? 'active' : 'inactive'}`}>
+          {icon}
+        </div>
         <div className="data-value">{title}</div>
       </div>
-      <Switch
-        onChange={onToggle}
-        checked={checked}
-        onColor="#10b981"
-        offColor="#4b5563"
-        onHandleColor="#fff"
-        offHandleColor="#d1d5db"
-        handleDiameter={20}
-        uncheckedIcon={false}
-        checkedIcon={false}
-        boxShadow="0px 1px 3px rgba(0, 0, 0, 0.4)"
-        activeBoxShadow="0px 0px 1px 5px rgba(16, 185, 129, 0.2)"
-        height={24}
-        width={48}
-      />
+      <label className="custom-toggle">
+        <input type="checkbox" checked={checked} onChange={onToggle} />
+        <span className="toggle-slider"></span>
+      </label>
     </div>
   )
 }

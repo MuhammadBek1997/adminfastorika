@@ -228,7 +228,7 @@ const navigate = useNavigate()
               <button className="btn" onClick={() => setShowAddModal(false)}>
                 {t('cancel') || 'Отмена'}
               </button>
-              <button className="btn btn-primary" onClick={handleAddAdmin}>
+              <button className="btn-primary" onClick={handleAddAdmin}>
                 {t('add') || 'Добавить'}
               </button>
             </div>

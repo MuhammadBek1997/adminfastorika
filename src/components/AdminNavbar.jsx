@@ -1,15 +1,32 @@
 import { useState } from 'react'
-import { ChevronDown, Moon, Sun } from 'lucide-react'
+import { ChevronDown, Moon, Sun, Menu, X, ArrowLeftFromLineIcon, ArrowRightToLineIcon } from 'lucide-react'
 import { useGlobalContext } from '../context'
 
 const AdminNavbar = () => {
   let { theme, toggleTheme, currentLanguage, handleChange, t, currentLang, languages } = useGlobalContext()
   const [isThemeOpen, setIsThemeOpen] = useState(false)
   const [isLangOpen, setIsLangOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
-    <div className='admin-navbar'>
-      <div className="dropdowns-cont">
+    <>
+      {isMobileMenuOpen && (
+        <div
+          className="mobile-menu-overlay"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      <div className='admin-navbar'>
+        <button
+          className="mobile-menu-toggle"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {isMobileMenuOpen ? <ArrowRightToLineIcon size={20} /> : <ArrowLeftFromLineIcon size={20} />}
+        </button>
+
+        <div className={`dropdowns-cont ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
         {/* Theme Dropdown */}
         <div className="themeDropdown">
           <button
@@ -83,7 +100,8 @@ const AdminNavbar = () => {
           )}
         </div>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
 
