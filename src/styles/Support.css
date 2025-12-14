@@ -579,3 +579,27 @@
     height: 2.25rem;
   }
 }
+
+@media (max-width:450px) {
+  .support-container{
+    margin-left: 0;
+  }
+  .support-chat-header{
+    margin-left: 4rem;
+  }
+  .support-chat-avatar{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .support-chat-input-container,
+  .support-chat-actions,
+  .support-user-button{
+    gap: 0.1rem;
+  }
+  .support-users-list {
+    display: none;
+  }
+  .main-content{
+    margin-left: 80px !important;
+  }
+}

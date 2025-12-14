@@ -45,7 +45,7 @@
   "no":"No.",
   "actions":"Actions",
   "rowsPerPage":"Rows per page",
-  "prev":"Prev",
+  "prev":"Back",
   "next":"Next"
   ,
   "login-client":"Log In",
@@ -91,5 +91,32 @@
   "totalBalance":"Total Balance in USD Equivalent",
   "overallLiquidity":"Overall Liquidity",
   "balance":"Balance",
-  "inDollars":"In Dollars"
+  "inDollars":"In Dollars",
+  "notVerified":"Not Verified",
+  "all":"All",
+  "id":"No.",
+  "toStart":"Back to top",
+  "back":"Back",
+  "client":"Client",
+  "clientBlocked":"Client is blocked",
+  "suspiciousActivity":"Reason: Suspicious activity",
+  "unblock":"Unblock",
+  "userData":"User Data",
+  "username":"User ID",
+  "dateOfBirth":"Date of Birth",
+  "statusStatistics":"Status Statistics",
+  "linkedCards":"Linked Cards",
+  "deleteCard":"Delete Card",
+  "blockClient":"Block Client",
+  "transactionHistory":"Transaction History",
+  "dateTransactionId":"Date / Transaction ID",
+  "sentReceived":"Sent / Received",
+  "editClientData":"Edit Client Data",
+  "blockClientConfirm":"Specify the reason for blocking",
+  "unblockClient":"Unblock Client",
+  "unblockClientConfirm":"Unblock this user?",
+  "theme":{
+    "light":"light",
+    "dark":"dark"
+  }
 }

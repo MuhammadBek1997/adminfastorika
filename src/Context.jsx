@@ -2,7 +2,9 @@ import { useState, useEffect, useMemo } from 'react';
 import { AppContext } from './context.js';
 import { useTranslation } from 'react-i18next';
 import { fetchUsers } from './api.js';
+import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
+
 
 export const AppProvider = ({ children }) => {
   const { t, i18n } = useTranslation();
@@ -12,7 +14,6 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem('language', langCode);
   }
   
-
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
     return savedTheme || 'light';
@@ -25,6 +26,7 @@ export const AppProvider = ({ children }) => {
   const [users, setUsers] = useState([])
   const [usersLoading, setUsersLoading] = useState(false)
   const [usersError, setUsersError] = useState(null)
+
 
 
   useEffect(() => {

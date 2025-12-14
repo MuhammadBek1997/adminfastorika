@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Paperclip, Send, X, FileText, ChevronDown, Menu, ChevronLeft } from 'lucide-react'
 import { useGlobalContext } from '../context'
+import '../styles/Support.css'
 
 const Support = () => {
   const [selectedConversation, setSelectedConversation] = useState(0)
@@ -9,7 +10,7 @@ const Support = () => {
   const [attachments, setAttachments] = useState([])
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
-  let {t,sidebarWidth,sidebarCollapsed} = useGlobalContext()
+  let {sidebarWidth,sidebarCollapsed} = useGlobalContext()
 
   // Check screen size and auto-collapse on mobile/tablet
   useEffect(() => {
@@ -237,7 +238,9 @@ const Support = () => {
 
       {/* Users List Below Toggle */}
       {!sidebarOpen && (
-        <div className="support-users-list">
+        <div className="support-users-list" style={{
+            left:sidebarOpen ? `${Number(sidebarWidth.slice(0,2))+184}px`: !sidebarCollapsed ? `${Number(sidebarWidth.slice(0,2))+260}px`:`${Number(sidebarWidth.slice(0,1))+86}px`
+        }}>
           {uniqueUsers.map((user) => (
             <div 
               key={user.email}
@@ -348,13 +351,13 @@ const Support = () => {
                 className="support-user-button"
                 onClick={() => setShowUserMenu(!showUserMenu)}
               >
-                <div className="support-chat-avatar" style={{ width: '2rem', height: '2rem' }}>U</div>
+                <div className="support-chat-avatar">U</div>
                 <ChevronDown size={16} />
               </button>
               {showUserMenu && (
                 <div className="support-user-menu">
-                  <button className="support-user-menu-item">
-                    <div className="support-chat-avatar" style={{ width: '1.5rem', height: '1.5rem', fontSize: '0.75rem' }}>U</div>
+                  <button className="support-user-menu-item" >
+                    <div className="support-chat-avatar">U</div>
                     <span>UserName</span>
                   </button>
                 </div>

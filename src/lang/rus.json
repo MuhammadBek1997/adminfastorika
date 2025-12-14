@@ -46,7 +46,7 @@
   "actions":"Действия",
   "rowsPerPage":"Строк на странице",
   "prev":"Назад",
-  "next":"Вперёд"
+  "next":"Следующая"
   ,
   "login-client":"Войти",
   "login-clientToptext":"Нет аккаунта?",
@@ -91,5 +91,32 @@
   "totalBalance":"Общий баланс в долларовом эквиваленте",
   "overallLiquidity":"Общая ликвидность",
   "balance":"Баланс",
-  "inDollars":"В долларах"
+  "inDollars":"В долларах",
+  "notVerified":"Не верифицирован",
+  "all":"Все",
+  "id":"№",
+  "toStart":"В начало",
+  "back":"Назад",
+  "client":"Клиент",
+  "clientBlocked":"Клиент заблокирован",
+  "suspiciousActivity":"Причина: Мошенническая активность",
+  "unblock":"Разблокировать",
+  "userData":"Данные пользователя",
+  "username":"ID пользователя",
+  "dateOfBirth":"Дата рождения",
+  "statusStatistics":"Статистика по статусам",
+  "linkedCards":"Привязанные карты",
+  "deleteCard":"Удалить карту",
+  "blockClient":"Заблокировать клиента",
+  "transactionHistory":"История транзакций",
+  "dateTransactionId":"Дата / ID транзакции",
+  "sentReceived":"Отправлено / Получено",
+  "editClientData":"Редактировать данные клиента",
+  "blockClientConfirm":"Укажите причину блокировки",
+  "unblockClient":"Разблокировать клиента",
+  "unblockClientConfirm":"Разблокировать этого пользователя?",
+  "theme":{
+    "light":"Светлый",
+    "dark":"Тёмный"
+  }
 }

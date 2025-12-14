@@ -1,12 +1,10 @@
-import React from 'react'
+import { Outlet } from 'react-router-dom'
 import AdminNavbar from '../components/AdminNavbar.jsx'
 import { useGlobalContext } from '../context.js'
 
 const Clients = () => {
-  let {t,users} = useGlobalContext()
+  const { t } = useGlobalContext()
 
-  console.log(users);
-  
   return (
     <section className="admin-section">
       <div className="section-header">
@@ -15,8 +13,10 @@ const Clients = () => {
         </h2>
         <AdminNavbar/>
       </div>
-      <div className="section-body">
 
+      <div className="section-body" style={{ padding: '1.5rem' }}>
+        {/* Client Content - rendered by nested routes */}
+        <Outlet />
       </div>
     </section>
   )
