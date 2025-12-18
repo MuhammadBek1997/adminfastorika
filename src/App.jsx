@@ -7,6 +7,8 @@ import ClientsList from './pages/clients/ClientsList.jsx';
 import ClientDetails from './pages/clients/ClientDetails.jsx';
 import Sidebar from './components/Sidebar.jsx';
 import Transactions from './pages/Transactions.jsx';
+import TransactionsList from './pages/transactions/TransactionsList.jsx';
+import TransactionDetails from './pages/transactions/TransactionDetails.jsx';
 import Reports from './pages/Reports.jsx';
 import TransactionsReport from './pages/reports/TransactionsReport.jsx';
 import RevenueReport from './pages/reports/RevenueReport.jsx';
@@ -42,7 +44,10 @@ function App() {
             <Route index element={<ClientsList/>}/>
             <Route path=':clientId' element={<ClientDetails/>}/>
           </Route>
-          <Route path='/transactions' element={<Transactions/>}/>
+          <Route path='/transactions' element={<Transactions/>}>
+            <Route index element={<TransactionsList/>}/>
+            <Route path=':transactionId' element={<TransactionDetails/>}/>
+          </Route>
           <Route path='/reports' element={<Reports/>}>
             <Route index element={<TransactionsReport/>}/>
             <Route path='transactions' element={<TransactionsReport/>}/>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Paperclip, Send, X, FileText, ChevronDown, Menu, ChevronLeft } from 'lucide-react'
 import { useGlobalContext } from '../context'
 import '../styles/Support.css'
+import { useNavigate } from 'react-router-dom'
 
 const Support = () => {
   const [selectedConversation, setSelectedConversation] = useState(0)
@@ -11,6 +12,7 @@ const Support = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
   let {sidebarWidth,sidebarCollapsed,t} = useGlobalContext()
+  let navigate = useNavigate()
 
   // Check screen size and auto-collapse on mobile/tablet
   useEffect(() => {
@@ -35,6 +37,7 @@ const Support = () => {
       email: 'user@email.com',
       lastMessage: 'Hello, I have difficulties starting a new venture. Can you help?',
       time: '14:20',
+      userId:19,
       date: 'November 2, 2025',
       messages: [
         {
@@ -59,6 +62,7 @@ const Support = () => {
       email: 'jane@email.com',
       lastMessage: 'Hello, I am facing issues while creating a new enterprise. I would appreciate your help!',
       time: '14:20',
+      userId:18,
       date: 'November 2, 2025',
       messages: [
         {
@@ -101,6 +105,7 @@ const Support = () => {
       email: 'michael@email.com',
       lastMessage: 'Hello, I am having difficulties starting a new business. Can you help?',
       time: '14:20',
+      userId:17,
       date: 'November 2, 2025',
       messages: [
         {
@@ -157,6 +162,7 @@ const Support = () => {
       email: 'sarah@email.com',
       lastMessage: 'Hello, I am facing difficulties while creating a new project. I would appreciate your help!',
       time: '14:20',
+      userId:16,
       date: 'March 12, 2025',
       messages: [
         {
@@ -356,9 +362,11 @@ const Support = () => {
               </button>
               {showUserMenu && (
                 <div className="support-user-menu">
-                  <button className="support-user-menu-item" >
+                  <button className="support-user-menu-item" onClick={()=>navigate(`/clients${currentConversation.userId}`)}>
                     <div className="support-chat-avatar">U</div>
-                    <span>UserName</span>
+                    <span>
+                      {currentConversation.user}
+                    </span>
                   </button>
                 </div>
               )}
