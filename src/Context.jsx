@@ -60,15 +60,59 @@ export const AppProvider = ({ children }) => {
   }, [currentLanguage, languages])
 
 
-  // Minimal auth handlers for previewing Login page
+  // Admin login handler
   const cancelLogin = () => {
     window.location.assign('/');
   }
 
-  const handleLogin = async () => {
-    localStorage.setItem('adminlog', 'true');
-    window.location.assign('/');
-    return true;
+  const handleLogin = async (email, password) => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}auth/admin/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+
+      const responseData = await res.json();
+
+      if (!res.ok) {
+        alert(responseData.message || 'Login failed');
+        return false;
+      }
+
+      const { data, success, message } = responseData;
+
+      if (!success || !data) {
+        alert(message || 'Login failed');
+        return false;
+      }
+
+      // Extract tokens and admin data
+      const { accessToken, refreshToken, user: adminData } = data;
+
+      // Store tokens and admin info
+      sessionStorage.setItem('token', accessToken);
+      sessionStorage.setItem('refreshToken', refreshToken);
+      localStorage.setItem('adminlog', 'true');
+      localStorage.setItem('adminRole', adminData.role); // ADMIN or SUPERADMIN
+      localStorage.setItem('adminEmail', adminData.email);
+
+      window.location.assign('/');
+      return true;
+    } catch (err) {
+      console.error('Login error:', err);
+      alert('Network error');
+      return false;
+    }
+  }
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('refreshToken');
+    localStorage.removeItem('adminlog');
+    localStorage.removeItem('adminRole');
+    localStorage.removeItem('adminEmail');
+    window.location.assign('/login');
   }
 
   const loadUsers = async (page = 0, size = 10) => {
@@ -96,7 +140,7 @@ export const AppProvider = ({ children }) => {
       handleChange,
        currentLanguage,
        t, languages,
-       currentLang, cancelLogin, handleLogin,
+       currentLang, cancelLogin, handleLogin, handleLogout,
        token,
        users, usersLoading, usersError, loadUsers,
        sidebarCollapsed, setSidebarCollapsed,

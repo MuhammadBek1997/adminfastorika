@@ -1,4 +1,4 @@
-export const API_BASE = import.meta.env.VITE_API_URL || 'https://fastorikabackend-production.up.railway.app/api/';
+export const API_BASE = import.meta.env.VITE_API_URL || 'http://backend-fastorika.up.railway.app/api/';
 
 export const apiFetch = async (path, options = {}) => {
   const defaultHeaders = {

@@ -113,9 +113,8 @@ const TransactionDetails = () => {
         {/* Left Column - Transaction Details and Comments */}
         <div className="transaction-left-column">
           {/* Transaction Info Section */}
-          <div className="transaction-info-section">
             <h3 className="section-subtitle">{t('transactionDetails') || 'Детали транзакции'}</h3>
-
+          <div className="transaction-info-section">
             {showSaveChanges && (
               <div className="save-changes-banner">
                 <span>{t('saveChanges') || 'Сохраните изменения'}</span>
@@ -229,39 +228,39 @@ const TransactionDetails = () => {
               <div className="transaction-info-column">
                 <div className="detail-row">
                   <div className="detail-label">{t('date') || 'Дата'}</div>
-                  <div className="detail-value">{transaction.date}</div>
+                  <div className="detail-value-input">{transaction.date}</div>
                 </div>
 
                 <div className="detail-row">
                   <div className="detail-label">{t('userRemoved') || 'Транзакция удалена пользователем?'}</div>
-                  <div className="detail-value">{transaction.isUserRemoved ? t('yes') || 'Да' : t('no') || 'Нет'}</div>
+                  <div className="detail-value-input">{transaction.isUserRemoved ? t('yes') || 'Да' : t('no') || 'Нет'}</div>
                 </div>
 
                 <div className="detail-divider"></div>
 
                 <div className="detail-row">
-                  <div className="detail-label">{t('recipientCurrency') || 'Получатель'}</div>
-                  <div className="detail-value">{transaction.recipient.name}</div>
+                  <div className="detail-label">{t('recipient') || 'Получатель'}</div>
+                  <div className="detail-value-input">{transaction.recipient.name}</div>
                 </div>
 
                 <div className="detail-row">
                   <div className="detail-label">{t('recipientBank') || 'Название банка'}</div>
-                  <div className="detail-value">{transaction.recipient.bank}</div>
+                  <div className="detail-value-input">{transaction.recipient.bank}</div>
                 </div>
 
                 <div className="detail-row">
                   <div className="detail-label">{t('recipientAccount') || 'Номер счёта'}</div>
-                  <div className="detail-value">{transaction.recipient.account}</div>
+                  <div className="detail-value-input">{transaction.recipient.account}</div>
                 </div>
 
                 <div className="detail-row">
                   <div className="detail-label">{t('receivingBank') || 'Получающий банк'}</div>
-                  <div className="detail-value">{transaction.receivingBank.name}</div>
+                  <div className="detail-value-input">{transaction.receivingBank.name}</div>
                 </div>
 
                 <div className="detail-row">
                   <div className="detail-label">{t('receivingBankAccount') || 'Название банка'}</div>
-                  <div className="detail-value">{transaction.receivingBank.account}</div>
+                  <div className="detail-value-input">{transaction.receivingBank.account}</div>
                 </div>
               </div>
             </div>
@@ -273,9 +272,8 @@ const TransactionDetails = () => {
         {/* Right Sidebar - Payment Operations and User Data */}
         <div className="transaction-right-sidebar">
           {/* Payment Operations Section */}
-          <div className="payment-operations-section">
             <h3 className="section-subtitle">{t('paymentOperations') || 'Платежные операции'}</h3>
-
+          <div className="payment-operations-section">
             <div className="payment-cards">
               <div className="payment-card pay-in">
                 <div className="payment-card-header">

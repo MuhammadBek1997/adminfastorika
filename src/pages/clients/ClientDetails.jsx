@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useGlobalContext } from '../../context.js'
-import { ChevronLeft, Search, Edit, CreditCard, Check, XCircle, Clock, DollarSign, MessageCircle, MinusCircleIcon, CircleDollarSignIcon, MessagesSquare } from 'lucide-react'
+import { ChevronLeft, Search, Edit, CreditCard, Check, XCircle, Clock, DollarSign, MessageCircle, MinusCircleIcon, CircleDollarSignIcon, MessagesSquare, MoreVertical, Trash2 } from 'lucide-react'
 import '../../styles/Clients.css'
 
 const ClientDetails = () => {
@@ -12,6 +12,7 @@ const ClientDetails = () => {
   const [showEditModal, setShowEditModal] = useState(false)
   const [showBlockModal, setShowBlockModal] = useState(false)
   const [showUnblockModal, setShowUnblockModal] = useState(false)
+  const [activeCardMenu, setActiveCardMenu] = useState(null)
 
   // Mock client data - replace with actual data fetch
   const client = {
@@ -248,9 +249,22 @@ const ClientDetails = () => {
                   <div className="card-number">{card.number}</div>
                   {card.bank && <div className="card-bank">{card.bank}</div>}
                 </div>
-                {card.canDelete && (
-                  <button className="btn-delete-card">{t('deleteCard') || 'Удалить карту'}</button>
-                )}
+                <div className="card-menu-wrapper">
+                  <button
+                    className="card-menu-btn"
+                    onClick={() => setActiveCardMenu(activeCardMenu === card.id ? null : card.id)}
+                  >
+                    <MoreVertical size={18} />
+                  </button>
+                  {activeCardMenu === card.id && (
+                    <div className="card-dropdown-menu">
+                      <button className="card-dropdown-item delete">
+                        <Trash2 size={14} />
+                        {t('deleteCard') || 'Удалить карту'}
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>

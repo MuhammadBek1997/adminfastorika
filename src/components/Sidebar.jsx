@@ -5,11 +5,16 @@ import { useGlobalContext } from '../context'
 import { ArrowLeftRight, BarChart, UserCog, UsersIcon, ChevronDown, PanelLeftClose, PanelLeft, MessagesSquare, LogOut, ChevronUp, ChevronsUpDown } from 'lucide-react'
 
 const Sidebar = () => {
-  const { t, sidebarCollapsed, setSidebarCollapsed,setSidebarWidth,sidebarWidth } = useGlobalContext()
+  const { t, sidebarCollapsed, setSidebarCollapsed,setSidebarWidth,sidebarWidth, handleLogout } = useGlobalContext()
   const navigate = useNavigate()
   const location = useLocation()
   const [showReportsMenu, setShowReportsMenu] = useState(false)
   const [showUserMenu, setShowUserMenu] = useState(false)
+
+  // Get admin info from localStorage
+  const adminEmail = localStorage.getItem('adminEmail') || 'admin@fastorika.com'
+  const adminRole = localStorage.getItem('adminRole') || 'ADMIN'
+  const adminInitial = adminEmail.charAt(0).toUpperCase()
 
   // Check if we're on a reports page
   const isReportsActive = location.pathname.startsWith('/reports')
@@ -28,15 +33,6 @@ const Sidebar = () => {
   const handleCollapse = () =>{
     setSidebarCollapsed(!sidebarCollapsed)
     setSidebarWidth(sidebarWidth == "80px" ? "280px" : "80px")
-  }
-
-  const handleLogout = () => {
-    // Add your logout logic here
-    console.log('Logging out...')
-    // For example: clear tokens, redirect to login, etc.
-    localStorage.clear()
-    window.location.reload()
-    // navigate('/login')
   }
 
   return (
@@ -130,13 +126,13 @@ const Sidebar = () => {
             title="User Account"
           >
             <div className="user-avatar">
-              <span>U</span>
+              <span>{adminInitial}</span>
             </div>
             {!sidebarCollapsed && (
               <>
                 <div className="user-info">
-                  <span className="user-name">UserName</span>
-                  <span className="user-email">user@gmail.com</span>
+                  <span className="user-name">{adminRole}</span>
+                  <span className="user-email">{adminEmail}</span>
                 </div>
                 {
                   showUserMenu ?
