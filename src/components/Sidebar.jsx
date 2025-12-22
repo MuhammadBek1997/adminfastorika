@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import '../styles/Sidebar.css'
 import { useGlobalContext } from '../context'
-import { ArrowLeftRight, BarChart, UserCog, UsersIcon, ChevronDown, PanelLeftClose, PanelLeft, MessagesSquare, LogOut, ChevronUp, ChevronsUpDown } from 'lucide-react'
+import { ArrowLeftRight, BarChart, UserCog, UsersIcon, ChevronDown, PanelLeftClose, PanelLeft, MessagesSquare, LogOut, ChevronUp, ChevronsUpDown, Globe } from 'lucide-react'
+import { apiFetch } from '../api.js'
 
 const Sidebar = () => {
   const { t, sidebarCollapsed, setSidebarCollapsed,setSidebarWidth,sidebarWidth, handleLogout } = useGlobalContext()
@@ -15,6 +16,54 @@ const Sidebar = () => {
   const adminEmail = localStorage.getItem('adminEmail') || 'admin@fastorika.com'
   const adminRole = localStorage.getItem('adminRole') || 'ADMIN'
   const adminInitial = adminEmail.charAt(0).toUpperCase()
+  const isSuperAdmin = adminRole === 'SUPER_ADMIN' || adminRole === 'SUPERADMIN'
+
+  // Admin permissions
+  const [permissions, setPermissions] = useState({
+    clientManagementEnabled: true,
+    reportsEnabled: true,
+    transactionsEnabled: true,
+    administrationEnabled: true
+  })
+
+  // Load current admin's permissions
+  useEffect(() => {
+    const loadMyPermissions = async () => {
+      // SuperAdmin has all permissions
+      if (isSuperAdmin) {
+        setPermissions({
+          clientManagementEnabled: true,
+          reportsEnabled: true,
+          transactionsEnabled: true,
+          administrationEnabled: true
+        })
+        return
+      }
+
+      try {
+        // Get current admin's data from backend
+        const adminId = localStorage.getItem('adminId')
+        if (!adminId) return
+
+        const res = await apiFetch(`admins/${adminId}`)
+        const responseData = await res.json()
+
+        if (res.ok && responseData.success && responseData.data) {
+          const adminData = responseData.data
+          setPermissions({
+            clientManagementEnabled: adminData.clientManagementEnabled || false,
+            reportsEnabled: adminData.reportsEnabled || false,
+            transactionsEnabled: adminData.transactionsEnabled || false,
+            administrationEnabled: adminData.administrationEnabled || false
+          })
+        }
+      } catch (err) {
+        console.error('Load permissions error:', err)
+      }
+    }
+
+    loadMyPermissions()
+  }, [isSuperAdmin])
 
   // Check if we're on a reports page
   const isReportsActive = location.pathname.startsWith('/reports')
@@ -54,61 +103,85 @@ const Sidebar = () => {
         </div>
 
         <div className='sidebar-list'>
-          <NavLink to={'/'} className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`} title={t("clients")}>
-            <UsersIcon size={20}/>
-            {!sidebarCollapsed && <span>{t("clients")}</span>}
-          </NavLink>
-          <NavLink to={'/transactions'} className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`} title={t("transactions")}>
-            <ArrowLeftRight size={20}/>
-            {!sidebarCollapsed && <span>{t("transactions")}</span>}
-          </NavLink>
+          {/* Clients - only show if clientManagementEnabled */}
+          {permissions.clientManagementEnabled && (
+            <NavLink to={'/'} className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`} title={t("clients")}>
+              <UsersIcon size={20}/>
+              {!sidebarCollapsed && <span>{t("clients")}</span>}
+            </NavLink>
+          )}
 
-          {/* Reports Dropdown */}
-          <div className="reports-dropdown">
-            <button
-              onClick={() => setShowReportsMenu(!showReportsMenu)}
-              className={`nav-link reports-toggle ${isReportsActive ? 'active' : ''}`}
-              title={t("reports")}
-            >
-              <BarChart size={20}/>
-              {!sidebarCollapsed && (
-                <>
-                  <span style={{ flex: 1 }}>{t("reports")}</span>
-                  <ChevronDown
-                    size={16}
-                    style={{
-                      marginLeft:"5rem",
-                      transition: 'transform 0.2s',
-                      transform: showReportsMenu ? 'rotate(180deg)' : 'rotate(0deg)'
-                    }}
-                  />
-                </>
+          {/* Transactions - only show if transactionsEnabled */}
+          {permissions.transactionsEnabled && (
+            <NavLink to={'/transactions'} className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`} title={t("transactions")}>
+              <ArrowLeftRight size={20}/>
+              {!sidebarCollapsed && <span>{t("transactions")}</span>}
+            </NavLink>
+          )}
+
+          {/* Reports Dropdown - only show if reportsEnabled */}
+          {permissions.reportsEnabled && (
+            <div className="reports-dropdown">
+              <button
+                onClick={() => setShowReportsMenu(!showReportsMenu)}
+                className={`nav-link reports-toggle ${isReportsActive ? 'active' : ''}`}
+                title={t("reports")}
+              >
+                <BarChart size={20}/>
+                {!sidebarCollapsed && (
+                  <>
+                    <span style={{ flex: 1 }}>{t("reports")}</span>
+                    <ChevronDown
+                      size={16}
+                      style={{
+                        marginLeft:"5rem",
+                        transition: 'transform 0.2s',
+                        transform: showReportsMenu ? 'rotate(180deg)' : 'rotate(0deg)'
+                      }}
+                    />
+                  </>
+                )}
+              </button>
+
+              {showReportsMenu && (
+                <div className="reports-submenu">
+                  {reportMenuItems.map((item) => (
+                    <button
+                      key={item.path}
+                      onClick={() => handleReportClick(item.path)}
+                      className={`submenu-item ${location.pathname === item.path ? 'active' : ''}`}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
               )}
-            </button>
+            </div>
+          )}
 
-            {showReportsMenu && (
-              <div className="reports-submenu">
-                {reportMenuItems.map((item) => (
-                  <button
-                    key={item.path}
-                    onClick={() => handleReportClick(item.path)}
-                    className={`submenu-item ${location.pathname === item.path ? 'active' : ''}`}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+          {/* Admins - only show if administrationEnabled */}
+          {permissions.administrationEnabled && (
+            <NavLink to={'/admins'} className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`} title={t("admins")}>
+              <UserCog size={20}/>
+              {!sidebarCollapsed && <span>{t("admins")}</span>}
+            </NavLink>
+          )}
 
-          <NavLink to={'/admins'} className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`} title={t("admins")}>
-            <UserCog size={20}/>
-            {!sidebarCollapsed && <span>{t("admins")}</span>}
-          </NavLink>
-          <NavLink to={'/support'} className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`} title={t("support")}>
-            <MessagesSquare size={20}/>
-            {!sidebarCollapsed && <span>{t("support")}</span>}
-          </NavLink>
+          {/* Countries - only show if administrationEnabled */}
+          {permissions.administrationEnabled && (
+            <NavLink to={'/countries'} className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`} title={t("countries") || "Countries"}>
+              <Globe size={20}/>
+              {!sidebarCollapsed && <span>{t("countries") || "Countries"}</span>}
+            </NavLink>
+          )}
+
+          {/* Support - only show if clientManagementEnabled */}
+          {permissions.clientManagementEnabled && (
+            <NavLink to={'/support'} className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`} title={t("support")}>
+              <MessagesSquare size={20}/>
+              {!sidebarCollapsed && <span>{t("support")}</span>}
+            </NavLink>
+          )}
       </div>
       <div className='sidebar-account'>
         <div className="user-menu-container">

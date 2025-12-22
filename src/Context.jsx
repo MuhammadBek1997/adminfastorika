@@ -94,8 +94,11 @@ export const AppProvider = ({ children }) => {
       sessionStorage.setItem('token', accessToken);
       sessionStorage.setItem('refreshToken', refreshToken);
       localStorage.setItem('adminlog', 'true');
-      localStorage.setItem('adminRole', adminData.role); // ADMIN or SUPERADMIN
+      localStorage.setItem('adminRole', adminData.role); // ADMIN or SUPER_ADMIN
       localStorage.setItem('adminEmail', adminData.email);
+      localStorage.setItem('adminId', adminData.id); // Store admin ID for permissions
+
+      console.log('Login successful:', { role: adminData.role, email: adminData.email, id: adminData.id });
 
       window.location.assign('/');
       return true;
@@ -112,6 +115,7 @@ export const AppProvider = ({ children }) => {
     localStorage.removeItem('adminlog');
     localStorage.removeItem('adminRole');
     localStorage.removeItem('adminEmail');
+    localStorage.removeItem('adminId');
     window.location.assign('/login');
   }
 

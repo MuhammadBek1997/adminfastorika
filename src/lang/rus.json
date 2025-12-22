@@ -189,5 +189,30 @@
   "deleteAdministrator":"Удалить администратора",
   "brand":{
     "admin":"Админ"
-  }
+  },
+  "countries":"Страны",
+  "searchCountries":"Поиск стран...",
+  "addCountry":"Добавить страну",
+  "noData":"Нет данных",
+  "loading":"Загрузка...",
+  "networkError":"Сетевая ошибка",
+  "confirmDelete":"Вы уверены, что хотите удалить эту страну?",
+  "countryDeleted":"Страна успешно удалена",
+  "isoCode":"ISO код",
+  "phoneCode":"Телефон код",
+  "newCountry":"Новая страна",
+  "countryDetails":"Детали страны",
+  "countryInformation":"Информация о стране",
+  "enterCountryName":"Введите название страны (например, Узбекистан)",
+  "enterIsoCode":"Введите ISO код (например, UZ)",
+  "enterPhoneCode":"Введите телефонный код (например, +998)",
+  "enterCurrency":"Введите код валюты (например, UZS)",
+  "fillAllFields":"Заполните все обязательные поля",
+  "noPermission":"У вас нет прав для этого действия",
+  "countryCreated":"Страна успешно создана",
+  "countryUpdated":"Страна успешно обновлена",
+  "saving":"Сохранение...",
+  "page":"Страница",
+  "of":"из",
+  "previous":"Назад"
 }

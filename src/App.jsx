@@ -16,8 +16,12 @@ import BalancesReport from './pages/reports/BalancesReport.jsx';
 import Admins from './pages/Admins.jsx';
 import AdminsList from './pages/admins/AdminsList.jsx';
 import AdminDetails from './pages/admins/AdminDetails.jsx';
+import Countries from './pages/Countries.jsx';
+import CountriesList from './pages/countries/CountriesList.jsx';
+import CountryDetails from './pages/countries/CountryDetails.jsx';
 import Login from './pages/Login.jsx';
 import Support from './pages/Support.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 function App() {
   const { theme, sidebarWidth} = useGlobalContext();
@@ -36,29 +40,61 @@ function App() {
       <Sidebar/>
       <div className="main-content" style={{marginLeft:sidebarWidth}}>
         <Routes>
-          <Route path='/' element={<Clients/>}>
+          <Route path='/' element={
+            <ProtectedRoute requiredPermission="clientManagementEnabled">
+              <Clients/>
+            </ProtectedRoute>
+          }>
             <Route index element={<ClientsList/>}/>
             <Route path=':clientId' element={<ClientDetails/>}/>
           </Route>
-          <Route path='/clients' element={<Clients/>}>
+          <Route path='/clients' element={
+            <ProtectedRoute requiredPermission="clientManagementEnabled">
+              <Clients/>
+            </ProtectedRoute>
+          }>
             <Route index element={<ClientsList/>}/>
             <Route path=':clientId' element={<ClientDetails/>}/>
           </Route>
-          <Route path='/transactions' element={<Transactions/>}>
+          <Route path='/transactions' element={
+            <ProtectedRoute requiredPermission="transactionsEnabled">
+              <Transactions/>
+            </ProtectedRoute>
+          }>
             <Route index element={<TransactionsList/>}/>
             <Route path=':transactionId' element={<TransactionDetails/>}/>
           </Route>
-          <Route path='/reports' element={<Reports/>}>
+          <Route path='/reports' element={
+            <ProtectedRoute requiredPermission="reportsEnabled">
+              <Reports/>
+            </ProtectedRoute>
+          }>
             <Route index element={<TransactionsReport/>}/>
             <Route path='transactions' element={<TransactionsReport/>}/>
             <Route path='revenue' element={<RevenueReport/>}/>
             <Route path='balances' element={<BalancesReport/>}/>
           </Route>
-          <Route path='/admins' element={<Admins/>}>
+          <Route path='/admins' element={
+            <ProtectedRoute requiredPermission="administrationEnabled">
+              <Admins/>
+            </ProtectedRoute>
+          }>
             <Route index element={<AdminsList/>}/>
             <Route path=':adminId' element={<AdminDetails/>}/>
           </Route>
-          <Route path='/support' element={<Support/>}/>
+          <Route path='/countries' element={
+            <ProtectedRoute requiredPermission="administrationEnabled">
+              <Countries/>
+            </ProtectedRoute>
+          }>
+            <Route index element={<CountriesList/>}/>
+            <Route path=':countryId' element={<CountryDetails/>}/>
+          </Route>
+          <Route path='/support' element={
+            <ProtectedRoute requiredPermission="clientManagementEnabled">
+              <Support/>
+            </ProtectedRoute>
+          }/>
         </Routes>
       </div>
     </div>

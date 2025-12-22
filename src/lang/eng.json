@@ -189,5 +189,30 @@
   "deleteAdministrator":"Delete administrator",
   "brand":{
     "admin":"Admin"
-  }
+  },
+  "countries":"Countries",
+  "searchCountries":"Search countries...",
+  "addCountry":"Add country",
+  "noData":"No data",
+  "loading":"Loading...",
+  "networkError":"Network error",
+  "confirmDelete":"Are you sure you want to delete this country?",
+  "countryDeleted":"Country successfully deleted",
+  "isoCode":"ISO code",
+  "phoneCode":"Phone code",
+  "newCountry":"New country",
+  "countryDetails":"Country details",
+  "countryInformation":"Country information",
+  "enterCountryName":"Enter country name (e.g., Uzbekistan)",
+  "enterIsoCode":"Enter ISO code (e.g., UZ)",
+  "enterPhoneCode":"Enter phone code (e.g., +998)",
+  "enterCurrency":"Enter currency code (e.g., UZS)",
+  "fillAllFields":"Fill in all required fields",
+  "noPermission":"You don't have permission for this action",
+  "countryCreated":"Country successfully created",
+  "countryUpdated":"Country successfully updated",
+  "saving":"Saving...",
+  "page":"Page",
+  "of":"of",
+  "previous":"Previous"
 }
