@@ -82,11 +82,7 @@ function App() {
             <Route index element={<AdminsList/>}/>
             <Route path=':adminId' element={<AdminDetails/>}/>
           </Route>
-          <Route path='/countries' element={
-            <ProtectedRoute requiredPermission="administrationEnabled">
-              <Countries/>
-            </ProtectedRoute>
-          }>
+          <Route path='/countries' element={<Countries/>}>
             <Route index element={<CountriesList/>}/>
             <Route path=':countryId' element={<CountryDetails/>}/>
           </Route>

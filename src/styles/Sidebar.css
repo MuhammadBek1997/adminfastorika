@@ -164,6 +164,7 @@
   margin-top: auto;
   padding-top: 1rem;
   border-top: 1px solid var(--border);
+  background: var(--bg-body);
 }
 
 .user-menu-container {

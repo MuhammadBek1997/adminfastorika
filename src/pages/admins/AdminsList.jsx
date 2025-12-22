@@ -355,8 +355,8 @@ const AdminsList = () => {
       </div>
 
       {showAddModal && (
-        <div className="modal-overlay" onClick={() => setShowAddModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-overlay">
+          <div className="modal-content">
             <h3 className="modal-title">{t('addAdministrator') || 'Добавить администратора'}</h3>
             <button className="modal-close" onClick={() => setShowAddModal(false)}>×</button>
             <div className="form-grid">

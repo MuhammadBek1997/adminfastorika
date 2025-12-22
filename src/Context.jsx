@@ -18,8 +18,14 @@ export const AppProvider = ({ children }) => {
   });
   const token = localStorage.getItem("token") || ""
 
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
-  const [sidebarWidth,setSidebarWidth] = useState("280px")
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
+    const savedState = localStorage.getItem('sidebarCollapsed');
+    return savedState === 'true';
+  })
+  const [sidebarWidth,setSidebarWidth] = useState(() => {
+    const savedState = localStorage.getItem('sidebarCollapsed');
+    return savedState === 'true' ? '80px' : '280px';
+  })
 
   const [users, setUsers] = useState([])
   const [usersLoading, setUsersLoading] = useState(false)
@@ -42,6 +48,7 @@ export const AppProvider = ({ children }) => {
       '--sidebar-width',
       sidebarCollapsed ? '80px' : '280px'
     )
+    localStorage.setItem('sidebarCollapsed', sidebarCollapsed)
   }, [sidebarCollapsed])
 
   const toggleTheme = () => {

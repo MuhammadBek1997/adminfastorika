@@ -397,45 +397,48 @@ const AdminDetails = () => {
           )}
         </div>
 
-        <div className="client-stats-section">
-          <div className="section-subtitle">{t('modulesAccess') || 'Доступы к модулям'}</div>
-          {isLoadingPermissions ? (
-            <div style={{ textAlign: 'center', padding: '20px' }}>
-              {t('loading') || 'Загрузка...'}
-            </div>
-          ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-              <AccessItem
-                icon={<UsersIcon size={18} />}
-                title={t('clients') || 'Клиенты'}
-                checked={permissions.clientManagementEnabled}
-                onToggle={() => togglePermission('clientManagementEnabled')}
-                disabled={!isSuperAdmin || isUpdatingPermission}
-              />
-              <AccessItem
-                icon={<ArrowLeftRight size={18} />}
-                title={t('transactions') || 'Транзакции'}
-                checked={permissions.transactionsEnabled}
-                onToggle={() => togglePermission('transactionsEnabled')}
-                disabled={!isSuperAdmin || isUpdatingPermission}
-              />
-              <AccessItem
-                icon={<BarChart size={18} />}
-                title={t('reports') || 'Отчёты'}
-                checked={permissions.reportsEnabled}
-                onToggle={() => togglePermission('reportsEnabled')}
-                disabled={!isSuperAdmin || isUpdatingPermission}
-              />
-              <AccessItem
-                icon={<UserCog size={18} />}
-                title={t('admins') || 'Администраторы'}
-                checked={permissions.administrationEnabled}
-                onToggle={() => togglePermission('administrationEnabled')}
-                disabled={!isSuperAdmin || isUpdatingPermission}
-              />
-            </div>
-          )}
-        </div>
+        {/* Permissions section - only visible to SuperAdmin */}
+        {isSuperAdmin && (
+          <div className="client-stats-section">
+            <div className="section-subtitle">{t('modulesAccess') || 'Доступы к модулям'}</div>
+            {isLoadingPermissions ? (
+              <div style={{ textAlign: 'center', padding: '20px' }}>
+                {t('loading') || 'Загрузка...'}
+              </div>
+            ) : (
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                <AccessItem
+                  icon={<UsersIcon size={18} />}
+                  title={t('clients') || 'Клиенты'}
+                  checked={permissions.clientManagementEnabled}
+                  onToggle={() => togglePermission('clientManagementEnabled')}
+                  disabled={isUpdatingPermission}
+                />
+                <AccessItem
+                  icon={<ArrowLeftRight size={18} />}
+                  title={t('transactions') || 'Транзакции'}
+                  checked={permissions.transactionsEnabled}
+                  onToggle={() => togglePermission('transactionsEnabled')}
+                  disabled={isUpdatingPermission}
+                />
+                <AccessItem
+                  icon={<BarChart size={18} />}
+                  title={t('reports') || 'Отчёты'}
+                  checked={permissions.reportsEnabled}
+                  onToggle={() => togglePermission('reportsEnabled')}
+                  disabled={isUpdatingPermission}
+                />
+                <AccessItem
+                  icon={<UserCog size={18} />}
+                  title={t('admins') || 'Администраторы'}
+                  checked={permissions.administrationEnabled}
+                  onToggle={() => togglePermission('administrationEnabled')}
+                  disabled={isUpdatingPermission}
+                />
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )
